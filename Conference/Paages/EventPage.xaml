@@ -1,0 +1,24 @@
+﻿<Page x:Class="Conference.Paages.EventPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Conference.Paages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EventPage" Background="#302D59">
+
+    <Grid>
+        <ListView x:Name="lstEvents" Margin="35,28,35,45" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Назване" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date}"/>
+                    <GridViewColumn Header="Дни" DisplayMemberBinding="{Binding Days}"/>
+                    <GridViewColumn Header="Город" DisplayMemberBinding="{Binding City.CityName}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Войти в аккаунт" Width="120" Height="20" Margin="338,420,342,10" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="Button_Click"  Background="LightYellow"/>
+    </Grid>
+</Page>

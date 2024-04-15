@@ -1,0 +1,24 @@
+﻿<Page x:Class="Conference.Paages.AuthPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Conference.Paages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AuthPage" Background="#302D59">
+
+    <Grid>
+        <Label Content="Логин" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="83,67,0,0" Height="30" Width="150" Foreground="White" />
+
+        <TextBlock Text="Логин или почта" Foreground="Gray" Name="txtHintLogin" Margin="238,67,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="150"/>
+        <TextBox Name="LoginTextBox" Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="234,67,0,0" ToolTip="Введите логин" TextChanged="LoginTextBox_TextChanged" Height="30" Width="150"/>
+
+        <Label Content="Пароль" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="83,117,0,0" Height="30" Width="150" Foreground="White"/>
+
+        <TextBlock Text="Пароль" Foreground="Gray" Name="txtHintPassword" Margin="233,117,0,0" VerticalAlignment="Top" Width="177" HorizontalAlignment="Left" Height="26"/>
+        <PasswordBox Name="PasswordBox" Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="233,117,0,0" ToolTip="Введите пароль" Password="" PasswordChanged="PasswordBox_PasswordChanged" Height="30" Width="150" />
+
+        <Button Content="Вход"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="151" Margin="233,172,0,0" Click="LoginButton_Click" Height="25" Background="LightYellow" />
+    </Grid>
+</Page>

@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bd02Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Event" Relationship="Self.FK_Event_City1" FromRole="City" ToRole="Event" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Eng_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Organizators" Relationship="Self.FK_Organizators_Country" FromRole="Country" ToRole="Organizators" />
+    <NavigationProperty Name="Parcipiants" Relationship="Self.FK_Parcipiants_Country" FromRole="Country" ToRole="Parcipiants" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Days" Type="Int32" Nullable="false" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="City" Relationship="Self.FK_Event_City1" FromRole="Event" ToRole="City" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Organizators" Relationship="Self.FK_Organizators_Gender" FromRole="Gender" ToRole="Organizators" />
+    <NavigationProperty Name="Parcipiants" Relationship="Self.FK_Parcipiants_Gender" FromRole="Gender" ToRole="Parcipiants" />
+  </EntityType>
+  <EntityType Name="Organizators">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Patronomic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Birthday" Type="DateTime" Precision="0" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="GenderId" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_Organizators_Country" FromRole="Organizators" ToRole="Country" />
+    <NavigationProperty Name="Gender" Relationship="Self.FK_Organizators_Gender" FromRole="Organizators" ToRole="Gender" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Organizators_Users" FromRole="Organizators" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Parcipiants">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Patronomic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Birthday" Type="DateTime" Precision="0" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="GenderId" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_Parcipiants_Country" FromRole="Parcipiants" ToRole="Country" />
+    <NavigationProperty Name="Gender" Relationship="Self.FK_Parcipiants_Gender" FromRole="Parcipiants" ToRole="Gender" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Parcipiants_Users" FromRole="Parcipiants" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Organizators" Relationship="Self.FK_Organizators_Users" FromRole="Users" ToRole="Organizators" />
+    <NavigationProperty Name="Parcipiants" Relationship="Self.FK_Parcipiants_Users" FromRole="Users" ToRole="Parcipiants" />
+  </EntityType>
+  <Association Name="FK_Event_City1">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="Event" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Organizators_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="Organizators" Type="Self.Organizators" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Organizators">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Parcipiants_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="Parcipiants" Type="Self.Parcipiants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Parcipiants">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Organizators_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Organizators" Type="Self.Organizators" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Organizators">
+        <PropertyRef Name="GenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Parcipiants_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Parcipiants" Type="Self.Parcipiants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Parcipiants">
+        <PropertyRef Name="GenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Organizators_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Organizators" Type="Self.Organizators" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Organizators">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Parcipiants_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Parcipiants" Type="Self.Parcipiants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Parcipiants">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="bd02Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="City" EntityType="Self.City" />
+    <EntitySet Name="Country" EntityType="Self.Country" />
+    <EntitySet Name="Event" EntityType="Self.Event" />
+    <EntitySet Name="Gender" EntityType="Self.Gender" />
+    <EntitySet Name="Organizators" EntityType="Self.Organizators" />
+    <EntitySet Name="Parcipiants" EntityType="Self.Parcipiants" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_Event_City1" Association="Self.FK_Event_City1">
+      <End Role="City" EntitySet="City" />
+      <End Role="Event" EntitySet="Event" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Organizators_Country" Association="Self.FK_Organizators_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Organizators" EntitySet="Organizators" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Parcipiants_Country" Association="Self.FK_Parcipiants_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Parcipiants" EntitySet="Parcipiants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Organizators_Gender" Association="Self.FK_Organizators_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Organizators" EntitySet="Organizators" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Parcipiants_Gender" Association="Self.FK_Parcipiants_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Parcipiants" EntitySet="Parcipiants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Organizators_Users" Association="Self.FK_Organizators_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Organizators" EntitySet="Organizators" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Parcipiants_Users" Association="Self.FK_Parcipiants_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Parcipiants" EntitySet="Parcipiants" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
